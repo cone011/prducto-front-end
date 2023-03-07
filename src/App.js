@@ -1,7 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { getSearchProducto } from "./api/productApi";
+import ProductList from "./componets/products/productsList/productsList";
 
 function App() {
+  const onObtainData = async () => {
+    let result = await getSearchProducto("rtx 3080");
+    console.log(result);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -17,6 +24,10 @@ function App() {
         >
           Learn React
         </a>
+        <button onClick={onObtainData} type="button">
+          Obtener datos
+        </button>
+        <ProductList />
       </header>
     </div>
   );
