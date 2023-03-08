@@ -4,8 +4,19 @@ import { getSearchProducto } from "./api/productApi";
 import ProductList from "./componets/products/productsList/productsList";
 import CartProvider from "./store/CartProvider";
 import CartList from "./componets/cart/cartList/cartList";
+import { useState } from "react";
 
 function App() {
+  const [cartIsShow, setCartIsShow] = useState(false);
+
+  const showCartHandler = () => {
+    setCartIsShow(true);
+  };
+
+  const hideCartHandler = () => {
+    setCartIsShow(false);
+  };
+
   const onObtainData = async () => {
     let result = await getSearchProducto("rtx 3080");
     console.log(result);
@@ -33,7 +44,8 @@ function App() {
           <ProductList />
         </header>
       </div>
-      <CartList />
+      <button onClick={showCartHandler}>Mostar Carrito</button>
+      {cartIsShow && <CartList onCloseModal={hideCartHandler} />}
     </CartProvider>
   );
 }

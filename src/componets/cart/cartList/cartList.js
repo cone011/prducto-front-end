@@ -1,11 +1,13 @@
 import { useContext } from "react";
-import clases from "./cartList.module.css";
+import classes from "./cartList.module.css";
 import CartItem from "../cartItem/cartItem";
 import CartContext from "../../../store/cart-context";
+import ShowModal from "../../UI/showModal/showModal";
 
-const CartList = () => {
+const CartList = (props) => {
+  const { onCloseModal } = props;
   const cartCtx = useContext(CartContext);
-  const totalAmount = `%${cartCtx.totalAmount.toFixed(2)}`;
+  const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
   const hasItems = cartCtx.items.length > 0;
 
   const cartItemRemoveHandler = (id) => {
@@ -17,7 +19,7 @@ const CartList = () => {
   };
 
   const cartItems = (
-    <ul className={clases.cartItems}>
+    <ul className={classes.cartItems}>
       {cartCtx.items.map((item) => (
         <CartItem
           key={item.id}
@@ -31,7 +33,21 @@ const CartList = () => {
     </ul>
   );
 
-  return cartItems;
+  return (
+    <ShowModal onClose={onCloseModal}>
+      {cartItems}
+      <div className={classes.total}>
+        <span>Total Amount</span>
+        <span>{totalAmount}</span>
+      </div>
+      <div className={classes.actions}>
+        <button className={classes["buton--alt"]} onClick={onCloseModal}>
+          Close
+        </button>
+        {hasItems && <button className={classes.button}>Order</button>}
+      </div>
+    </ShowModal>
+  );
 };
 
 export default CartList;

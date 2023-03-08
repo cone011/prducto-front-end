@@ -6,11 +6,10 @@ const ProductsItem = (props) => {
   const cartCtx = useContext(CartContext);
   const { name, imgUrl, price, key } = props;
   const addToCartHandler = () => {
-    console.log(price);
     cartCtx.addItem({
       id: Math.random(),
       name: name,
-      amoumnt: 1,
+      amount: 1,
       price: price,
     });
   };
