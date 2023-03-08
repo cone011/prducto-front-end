@@ -13,7 +13,6 @@ const ProductsItem = (props) => {
       amoumnt: 1,
       price: price,
     });
-    console.log(cartCtx);
   };
   return (
     <div className={classes.ProductItem}>
