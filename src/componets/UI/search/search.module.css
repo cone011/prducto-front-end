@@ -1,0 +1,33 @@
+.containerSearch {
+  color: white;
+  font-size: 20px;
+}
+
+.containerSearch input {
+  background-color: #212529;
+  border: none;
+  color: white;
+  width: 96%;
+}
+
+.containerSearch input:focus {
+  background-color: #212529;
+}
+
+.searchForm {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #495057;
+  padding: 10px;
+  border-radius: 7px;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 1.5rem auto;
+}
+
+.btnClearInput {
+  background: none;
+  border: none;
+  border-radius: 4px;
+}
