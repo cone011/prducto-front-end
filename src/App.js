@@ -12,8 +12,8 @@ function App() {
   const assigmentData = useCallback(async () => {
     try {
       let result = await getProductoCategory("MLA5725");
-      console.log(result);
-      setListProduct(result.results);
+      let dataObtain = result.result.results;
+      setListProduct(dataObtain);
     } catch (err) {
       console.log(err);
     }

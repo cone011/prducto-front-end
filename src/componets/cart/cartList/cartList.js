@@ -3,6 +3,7 @@ import classes from "./cartList.module.css";
 import CartItem from "../cartItem/cartItem";
 import CartContext from "../../../store/cart-context";
 import ShowModal from "../../UI/showModal/showModal";
+import { insertOrder } from "../../../api/orderApi";
 
 const CartList = (props) => {
   const { onCloseModal } = props;
@@ -16,6 +17,18 @@ const CartList = (props) => {
 
   const cartItemAddHandler = (item) => {
     cartCtx.addItem({ ...item, amount: 1 });
+  };
+
+  const onSendCart = async () => {
+    try {
+      let result = await insertOrder({
+        items: cartCtx.items,
+        totalAmount: cartCtx.totalAmount,
+      });
+      if (result) cartCtx.clearCart();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const cartItems = (
@@ -44,7 +57,11 @@ const CartList = (props) => {
         <button className={classes["buton--alt"]} onClick={onCloseModal}>
           Close
         </button>
-        {hasItems && <button className={classes.button}>Order</button>}
+        {hasItems && (
+          <button className={classes.button} onClick={onSendCart}>
+            Order
+          </button>
+        )}
       </div>
     </ShowModal>
   );
