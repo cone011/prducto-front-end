@@ -28,6 +28,7 @@
 .Price {
   font-size: 20px;
   font-weight: 700;
+  text-align: center;
 }
 .ProductItem button {
   width: 100%;

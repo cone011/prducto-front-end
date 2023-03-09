@@ -4,10 +4,10 @@ import classes from "./productsItem.module.css";
 
 const ProductsItem = (props) => {
   const cartCtx = useContext(CartContext);
-  const { name, imgUrl, price, key } = props;
+  const { name, imgUrl, price, id } = props;
   const addToCartHandler = () => {
     cartCtx.addItem({
-      id: Math.random(),
+      id: id,
       name: name,
       amount: 1,
       price: price,
