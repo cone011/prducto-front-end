@@ -25,9 +25,7 @@ export async function signUp(userObject) {
 export async function login(userObject) {
   const response = await fetch(`${CALL_API}/login`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       email: userObject.email,
       password: userObject.password,
@@ -40,5 +38,5 @@ export async function login(userObject) {
     throw new Error("Can not sign up this user");
   }
 
-  return data;
+  return { ...data.result };
 }

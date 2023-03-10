@@ -8,10 +8,10 @@ const AuthContext = createContext({
 });
 
 export function getTokenDuration() {
-  const storedTokenDateExpiration = localStorage.getItem("token");
+  const storedTokenDateExpiration = localStorage.getItem("expiration");
   const expirationDate = new Date(storedTokenDateExpiration);
   const now = new Date();
-  const duration = expirationDate.getDate() - now.getDate();
+  const duration = expirationDate.getTime() - now.getTime();
   return duration;
 }
 
@@ -19,7 +19,7 @@ export function getAuthToken() {
   const token = localStorage.getItem("token");
   if (!token) return null;
   const tokenDuration = getTokenDuration();
-  if (tokenDuration < 0) return "EXPIRED";
+  if (tokenDuration < 0) return null;
   return token;
 }
 export function logout() {
@@ -28,8 +28,8 @@ export function logout() {
 }
 
 export function login(token, expirationDate) {
-  localStorage.setItem("token");
-  localStorage.setItem("expiration");
+  localStorage.setItem("token", token);
+  localStorage.setItem("expiration", expirationDate);
 }
 
 export const AuthContextProvider = (props) => {
@@ -42,7 +42,7 @@ export const AuthContextProvider = (props) => {
     if (!tokenData) {
       logout();
     }
-  }, [tokenData, logout]);
+  }, [tokenData]);
 
   const contextValue = {
     token: tokenData,

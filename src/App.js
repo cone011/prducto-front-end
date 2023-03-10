@@ -1,43 +1,58 @@
-import { useCallback, useEffect, useState } from "react";
 import "./App.css";
-import CartProvider from "./store/CartProvider";
-import CartList from "./componets/cart/cartList/cartList";
-import Header from "./componets/UI/header/header";
-import { getProductoCategory } from "./api/productApi";
-import ProductList from "./componets/products/productsList/productsList";
+import { Routes, Route } from "react-router-dom";
+import Login from "./componets/auth/login/login";
+import Home from "./pages/home";
+import ProtectedRoute from "./routes/protectedRoute";
+import Product from "./pages/product";
 
 function App() {
-  const [cartIsShow, setCartIsShow] = useState(false);
-  const [listProduct, setListProduct] = useState([]);
-  const assigmentData = useCallback(async () => {
-    try {
-      let result = await getProductoCategory("MLA5725");
-      let dataObtain = result.result.results;
-      setListProduct(dataObtain);
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
-
-  useEffect(() => {
-    assigmentData();
-  }, [assigmentData]);
-
-  const showCartHandler = () => {
-    setCartIsShow(true);
-  };
-
-  const hideCartHandler = () => {
-    setCartIsShow(false);
-  };
-
   return (
-    <CartProvider>
-      <Header onShowCart={showCartHandler} />
-      {cartIsShow && <CartList onCloseModal={hideCartHandler} />}
-      <ProductList listProduct={listProduct} />
-    </CartProvider>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route exact element={<ProtectedRoute />}>
+        <Route path="/product" element={<Product />} />
+      </Route>
+      {/* <Route
+        path="/private"
+        element={
+          <PrivateRoute>
+            <Private />
+          </PrivateRoute>
+        }
+      /> */}
+    </Routes>
   );
+  // const routes = useRoutes([
+  //   {
+  //     path: "/",
+  //     element: <div>Hello Index</div>,
+  //   },
+  //   {
+  //     path: "product",
+  //     element: <Product />,
+  //   },
+  // ]);
+  // return routes;
+  // return (
+  //   <Router>
+  //     <div>
+  //       <Routes>
+  //         <Route path="/" element={Home} />
+  //         <Route path="/login" element={Login} />
+  //         <Route path="/signup" element={SignUp} />
+  //         <Route
+  //           path="/product"
+  //           element={
+  //             <ProtectedRoute>
+  //               <Product />
+  //             </ProtectedRoute>
+  //           }
+  //         />
+  //       </Routes>
+  //     </div>
+  //   </Router>
+  // );
 }
 
 export default App;
