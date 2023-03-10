@@ -13,46 +13,8 @@ function App() {
       <Route exact element={<ProtectedRoute />}>
         <Route path="/product" element={<Product />} />
       </Route>
-      {/* <Route
-        path="/private"
-        element={
-          <PrivateRoute>
-            <Private />
-          </PrivateRoute>
-        }
-      /> */}
     </Routes>
   );
-  // const routes = useRoutes([
-  //   {
-  //     path: "/",
-  //     element: <div>Hello Index</div>,
-  //   },
-  //   {
-  //     path: "product",
-  //     element: <Product />,
-  //   },
-  // ]);
-  // return routes;
-  // return (
-  //   <Router>
-  //     <div>
-  //       <Routes>
-  //         <Route path="/" element={Home} />
-  //         <Route path="/login" element={Login} />
-  //         <Route path="/signup" element={SignUp} />
-  //         <Route
-  //           path="/product"
-  //           element={
-  //             <ProtectedRoute>
-  //               <Product />
-  //             </ProtectedRoute>
-  //           }
-  //         />
-  //       </Routes>
-  //     </div>
-  //   </Router>
-  // );
 }
 
 export default App;

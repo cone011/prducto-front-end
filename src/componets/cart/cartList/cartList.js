@@ -6,7 +6,7 @@ import ShowModal from "../../UI/showModal/showModal";
 import { insertOrder } from "../../../api/orderApi";
 
 const CartList = (props) => {
-  const { onCloseModal } = props;
+  const { onCloseModal, onConfirmCart } = props;
   const cartCtx = useContext(CartContext);
   const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
   const hasItems = cartCtx.items.length > 0;
@@ -25,7 +25,9 @@ const CartList = (props) => {
         items: cartCtx.items,
         totalAmount: cartCtx.totalAmount,
       });
+      console.log(result);
       if (result) cartCtx.clearCart();
+      onConfirmCart();
     } catch (err) {
       console.log(err);
     }
