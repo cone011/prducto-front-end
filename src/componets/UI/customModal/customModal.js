@@ -49,6 +49,23 @@ const CustomModal = (props) => {
       </Fragment>
     );
   }
+
+  if (typeModal === "ERROR") {
+    return (
+      <Fragment>
+        <ShowModal onCloseModal={onCloseModal}>
+          <div className={classes.message}>
+            <span>{message}</span>
+          </div>
+          <div className={classes.actions}>
+            <button className={classes["buton--alt"]} onClick={onCloseModal}>
+              Close
+            </button>
+          </div>
+        </ShowModal>
+      </Fragment>
+    );
+  }
 };
 
 export default CustomModal;
