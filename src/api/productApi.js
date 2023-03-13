@@ -27,3 +27,15 @@ export async function getSearchProducto(searchProduct) {
 
   return data;
 }
+
+export async function getProductoById(productId) {
+  const response = await fetch(`${CALL_API}/productos/${productId}`);
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error("Could not get the data of this product");
+  }
+
+  return data;
+}

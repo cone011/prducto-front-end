@@ -2,6 +2,7 @@ import { Fragment, useContext, useReducer } from "react";
 import CartContext from "../../../store/cart-context";
 import { defaultTodoReducer } from "../../../util/const";
 import CustomModal from "../../UI/customModal/customModal";
+import { getProductoById } from "../../../api/productApi";
 import classes from "./productsItem.module.css";
 
 const todoReducer = (curTodo, action) => {
@@ -24,22 +25,23 @@ const ProductsItem = (props) => {
   const cartCtx = useContext(CartContext);
   const [todo, dispatchTodo] = useReducer(todoReducer, defaultTodoReducer);
   const { name, imgUrl, price, id } = props;
-  const addToCartHandler = () => {
-    cartCtx.addItem({
-      id: id,
-      name: name,
-      amount: 1,
-      price: price,
-    });
-  };
-
-  // const showDetail = () => {
-  //   dispatchTodo({
-  //     type: "SET_CART",
-  //     typeModal: "DETAIL",
-  //     productObject: { name, imgUrl, price, id },
+  // const addToCartHandler = () => {
+  //   cartCtx.addItem({
+  //     id: id,
+  //     name: name,
+  //     amount: 1,
+  //     price: price,
   //   });
   // };
+
+  const showDetail = async () => {
+    let result = await getProductoById(id);
+    dispatchTodo({
+      type: "SET_CART",
+      typeModal: "DETAIL",
+      productObject: result,
+    });
+  };
 
   const hideModal = () => {
     dispatchTodo({ type: "END" });
@@ -51,7 +53,7 @@ const ProductsItem = (props) => {
         <h3>{name}</h3>
         <img src={imgUrl} alt={name} />
         <span className={classes.Price}>${price}</span>
-        <button onClick={addToCartHandler}>View More Info</button>
+        <button onClick={showDetail}>View More Info</button>
       </div>
       {todo.isShow && (
         <CustomModal

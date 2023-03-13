@@ -38,9 +38,13 @@ const CustomModal = (props) => {
     return (
       <Fragment>
         <ShowModal onClose={onCloseModal}>
-          <img src={productObject.imgUrl} alt={productObject.name} />
+          <img
+            src={productObject.pictures[0].url}
+            alt={productObject.title}
+            className={classes.imgProduct}
+          />
           <div className={classes.message}>
-            <span>{productObject.name}</span>
+            <span>{productObject.title}</span>
           </div>
           <div className={classes.message}>
             <span>{productObject.price}</span>
