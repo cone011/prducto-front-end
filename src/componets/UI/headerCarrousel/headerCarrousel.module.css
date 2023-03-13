@@ -1,0 +1,14 @@
+.Header {
+  position: relative;
+}
+
+.HeaderItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgResponsive {
+  max-width: 100%;
+  height: auto;
+}
