@@ -50,6 +50,12 @@ const Product = () => {
     }
   }, []);
 
+  const onSearchByCategory = async (valueReturn) => {
+    let result = await getProductoCategory(valueReturn);
+    let dataObtain = result.results;
+    setListProduct(dataObtain);
+  };
+
   useEffect(() => {
     assigmentData();
   }, [assigmentData]);
@@ -84,7 +90,10 @@ const Product = () => {
         />
       )}
       <div className={classes.Home}>
-        <Filter listCategory={categories} />
+        <Filter
+          listCategory={categories}
+          onReturnCategoryValue={onSearchByCategory}
+        />
         <ProductList listProduct={listProduct} />
       </div>
     </CartProvider>
