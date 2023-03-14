@@ -2,7 +2,7 @@ import { useCallback, useEffect, useReducer, useState } from "react";
 import CartProvider from "../store/CartProvider";
 import CartList from "../componets/cart/cartList/cartList";
 import Header from "../componets/UI/header/header";
-import { getProductoCategory } from "../api/productApi";
+import { getProductoCategory, getSearchProducto } from "../api/productApi";
 import { getAllCategory } from "../api/categoryApi";
 import ProductList from "../componets/products/productsList/productsList";
 import { defaultTodoReducer } from "../util/const";
@@ -72,6 +72,18 @@ const Product = () => {
     }
   };
 
+  const onSearchData = async (dataValue) => {
+    try {
+      dispatchTodo({ type: "SET_LOADING", message: "LOADING" });
+      let result = await getSearchProducto(dataValue);
+      console.log(result.result.results);
+      let dataObtain = result.result.results;
+      dispatchTodo({ type: "END" });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     assigmentData();
   }, [assigmentData]);
@@ -113,7 +125,7 @@ const Product = () => {
           listCategory={categories}
           onReturnCategoryValue={onSearchByCategory}
         />
-        <ProductList listProduct={listProduct} />
+        <ProductList listProduct={listProduct} onSearchValue={onSearchData} />
       </div>
     </CartProvider>
   );

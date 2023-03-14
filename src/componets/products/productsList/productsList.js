@@ -1,11 +1,13 @@
 import Container from "../../UI/container/container";
+import Search from "../../UI/search/search";
 import ProductsItem from "../productsItem/productsItem";
 import classes from "./productsList.module.css";
 
 const ProductList = (props) => {
-  const { listProduct } = props;
+  const { listProduct, onSearchValue } = props;
   return (
     <Container>
+      <Search onReturnValue={onSearchValue} />
       <div className={classes.Products}>
         {listProduct.map((item) => (
           <ProductsItem

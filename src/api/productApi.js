@@ -16,7 +16,7 @@ export async function getProductoCategory(categoryId) {
 
 export async function getSearchProducto(searchProduct) {
   const response = await fetch(
-    `${CALL_API}//search-productos?searchProduct=${searchProduct}`
+    `${CALL_API}/search-productos?searchProduct=${searchProduct}`
   );
 
   const data = await response.json();
