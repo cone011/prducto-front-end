@@ -10,9 +10,10 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
-      <Route exact element={<ProtectedRoute />}>
+      <Route path="/product" element={<Product />} />
+      {/* <Route exact element={<ProtectedRoute />}>
         <Route path="/product" element={<Product />} />
-      </Route>
+      </Route> */}
     </Routes>
   );
 }

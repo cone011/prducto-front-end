@@ -11,14 +11,15 @@ const RoutesFiles = () => {
       <Route path="/" element={Home} />
       <Route path="/login" element={Login} />
       <Route path="/signup" element={SignUp} />
-      <Route
+      <Route path="/product" element={Product} />
+      {/* <Route
         path="/product"
         element={
           <ProtectedRoute>
             <Product />
           </ProtectedRoute>
         }
-      />
+      /> */}
     </Routes>
   );
 };

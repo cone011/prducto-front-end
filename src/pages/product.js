@@ -34,9 +34,11 @@ const Product = () => {
   const [todo, dispatchTodo] = useReducer(todoReducer, defaultTodoReducer);
   const assigmentData = useCallback(async () => {
     try {
+      dispatchTodo({ type: "SET_LOADING" });
       let result = await getProductoCategory("MLA5725");
       let dataObtain = result.results;
       setListProduct(dataObtain);
+      dispatchTodo({ type: "END" });
     } catch (err) {
       console.log(err);
     }
