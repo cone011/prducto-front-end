@@ -15,7 +15,12 @@ const todoReducer = (curTodo, action) => {
     case "SET_CART":
       return { ...curTodo, cartIsShow: true };
     case "SET_LOADING":
-      return { ...curTodo, isLoading: true, typeModal: "LOADING" };
+      return {
+        ...curTodo,
+        isLoading: true,
+        message: action.message,
+        typeModal: "LOADING",
+      };
     case "SET_CONFIRM":
       return {
         ...curTodo,
@@ -26,7 +31,12 @@ const todoReducer = (curTodo, action) => {
         typeModal: "CONFIRM",
       };
     case "END":
-      return { ...curTodo, cartIsShow: false, confirm: false };
+      return {
+        ...curTodo,
+        cartIsShow: false,
+        isLoading: false,
+        confirm: false,
+      };
     default:
       throw new Error("The action dont exist");
   }
@@ -38,7 +48,7 @@ const Product = () => {
   const [todo, dispatchTodo] = useReducer(todoReducer, defaultTodoReducer);
   const assigmentData = useCallback(async () => {
     try {
-      dispatchTodo({ type: "SET_LOADING" });
+      dispatchTodo({ type: "SET_LOADING", message: "LOADING" });
       let result = await getProductoCategory("MLA5725");
       let resultCategories = await getAllCategory();
       let dataObtain = result.results;
@@ -51,9 +61,15 @@ const Product = () => {
   }, []);
 
   const onSearchByCategory = async (valueReturn) => {
-    let result = await getProductoCategory(valueReturn);
-    let dataObtain = result.results;
-    setListProduct(dataObtain);
+    try {
+      dispatchTodo({ type: "SET_LOADING", message: "LOADING" });
+      let result = await getProductoCategory(valueReturn);
+      let dataObtain = result.results;
+      setListProduct(dataObtain);
+      dispatchTodo({ type: "END" });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
@@ -81,6 +97,9 @@ const Product = () => {
       <Header onShowCart={showCartHandler} />
       {todo.cartIsShow && (
         <CartList onCloseModal={hideModal} onConfirmCart={showConfirmHandler} />
+      )}
+      {todo.isLoading && (
+        <CustomModal typeModal={todo.typeModal} message={todo.message} />
       )}
       {todo.confirm && (
         <CustomModal
