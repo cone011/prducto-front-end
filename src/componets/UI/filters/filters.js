@@ -1,7 +1,9 @@
 import { Form } from "react-bootstrap";
 import classes from "./filters.module.css";
 
-const Filter = () => {
+const Filter = (props) => {
+  const { listCategory } = props;
+  console.log(listCategory);
   return (
     <div className={classes.Filter}>
       <span className={classes.Title}>Filter Products</span>

@@ -3,6 +3,7 @@ import CartProvider from "../store/CartProvider";
 import CartList from "../componets/cart/cartList/cartList";
 import Header from "../componets/UI/header/header";
 import { getProductoCategory } from "../api/productApi";
+import { getAllCategory } from "../api/categoryApi";
 import ProductList from "../componets/products/productsList/productsList";
 import { defaultTodoReducer } from "../util/const";
 import CustomModal from "../componets/UI/customModal/customModal";
@@ -33,13 +34,16 @@ const todoReducer = (curTodo, action) => {
 
 const Product = () => {
   const [listProduct, setListProduct] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [todo, dispatchTodo] = useReducer(todoReducer, defaultTodoReducer);
   const assigmentData = useCallback(async () => {
     try {
       dispatchTodo({ type: "SET_LOADING" });
       let result = await getProductoCategory("MLA5725");
+      let resultCategories = await getAllCategory();
       let dataObtain = result.results;
       setListProduct(dataObtain);
+      setCategories(resultCategories);
       dispatchTodo({ type: "END" });
     } catch (err) {
       console.log(err);
@@ -80,7 +84,7 @@ const Product = () => {
         />
       )}
       <div className={classes.Home}>
-        <Filter />
+        <Filter listCategory={categories} />
         <ProductList listProduct={listProduct} />
       </div>
     </CartProvider>
