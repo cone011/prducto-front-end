@@ -1,3 +1,14 @@
 .Container {
-  padding: 2rem 4rem;
+  display: flex;
+  width: 78%;
+  padding: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media (max-width: 771px) {
+  .Container {
+    width: 58%;
+    padding: 0;
+  }
 }

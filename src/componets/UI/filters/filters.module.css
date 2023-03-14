@@ -1,0 +1,36 @@
+.Filter {
+  background-color: #343a40;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  margin: 10px;
+  height: 86vh;
+  margin-top: 6rem;
+}
+
+.Filter span {
+  padding-bottom: 20px;
+}
+
+.Title {
+  font-size: 30px;
+}
+
+@media (max-width: 771px) {
+  .Filter {
+    width: 40%;
+    padding: 10px;
+    margin: 5px;
+    margin-top: 6rem;
+  }
+
+  .Filter span {
+    font-size: 10px;
+  }
+
+  .Title {
+    font-size: 18px !important;
+  }
+}

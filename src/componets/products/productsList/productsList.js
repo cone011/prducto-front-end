@@ -6,7 +6,6 @@ const ProductList = (props) => {
   const { listProduct } = props;
   return (
     <Container>
-      <h2>Some Products</h2>
       <div className={classes.Products}>
         {listProduct.map((item) => (
           <ProductsItem

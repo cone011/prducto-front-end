@@ -1,4 +1,15 @@
-.ProductItem {
+.Products {
+  width: 30%;
+  margin: 10px;
+}
+
+@media (max-width: 771px) {
+  .Products {
+    width: 100%;
+  }
+}
+
+/* .ProductItem {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -41,4 +52,4 @@
   border: none;
   outline: none;
   cursor: pointer;
-}
+} */

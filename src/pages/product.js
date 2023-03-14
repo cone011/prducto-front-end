@@ -6,6 +6,8 @@ import { getProductoCategory } from "../api/productApi";
 import ProductList from "../componets/products/productsList/productsList";
 import { defaultTodoReducer } from "../util/const";
 import CustomModal from "../componets/UI/customModal/customModal";
+import classes from "./product.module.css";
+import Filter from "../componets/UI/filters/filters";
 
 const todoReducer = (curTodo, action) => {
   switch (action.type) {
@@ -77,7 +79,10 @@ const Product = () => {
           typeModal={todo.typeModal}
         />
       )}
-      <ProductList listProduct={listProduct} />
+      <div className={classes.Home}>
+        <Filter />
+        <ProductList listProduct={listProduct} />
+      </div>
     </CartProvider>
   );
 };
