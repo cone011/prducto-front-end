@@ -9,3 +9,8 @@ export const defaultTodoReducer = {
   typeModal: null,
   productObject: null,
 };
+
+export const defaultCartSate = {
+  items: [],
+  totalAmount: 0,
+};

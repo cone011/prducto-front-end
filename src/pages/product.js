@@ -9,38 +9,7 @@ import { defaultTodoReducer } from "../util/const";
 import CustomModal from "../componets/UI/customModal/customModal";
 import classes from "./product.module.css";
 import Filter from "../componets/UI/filters/filters";
-
-const todoReducer = (curTodo, action) => {
-  switch (action.type) {
-    case "SET_CART":
-      return { ...curTodo, cartIsShow: true };
-    case "SET_LOADING":
-      return {
-        ...curTodo,
-        isLoading: true,
-        message: action.message,
-        typeModal: "LOADING",
-      };
-    case "SET_CONFIRM":
-      return {
-        ...curTodo,
-        cartIsShow: action.cartIsShow,
-        isLoading: action.isLoading,
-        message: action.message,
-        confirm: true,
-        typeModal: "CONFIRM",
-      };
-    case "END":
-      return {
-        ...curTodo,
-        cartIsShow: false,
-        isLoading: false,
-        confirm: false,
-      };
-    default:
-      throw new Error("The action dont exist");
-  }
-};
+import { todoReducer } from "../context/reducer";
 
 const Product = () => {
   const [listProduct, setListProduct] = useState([]);
@@ -76,8 +45,8 @@ const Product = () => {
     try {
       dispatchTodo({ type: "SET_LOADING", message: "LOADING" });
       let result = await getSearchProducto(dataValue);
-      console.log(result.result.results);
       let dataObtain = result.result.results;
+      setListProduct(dataObtain);
       dispatchTodo({ type: "END" });
     } catch (err) {
       console.log(err);
