@@ -1,5 +1,4 @@
-import { useCallback, useEffect, useReducer, useState } from "react";
-import CartProvider from "../store/CartProvider";
+import { Fragment, useCallback, useEffect, useReducer, useState } from "react";
 import CartList from "../componets/cart/cartList/cartList";
 import Header from "../componets/UI/header/header";
 import { getProductoCategory, getSearchProducto } from "../api/productApi";
@@ -74,7 +73,7 @@ const Product = () => {
   };
 
   return (
-    <CartProvider>
+    <Fragment>
       <Header onShowCart={showCartHandler} />
       {todo.cartIsShow && (
         <CartList onCloseModal={hideModal} onConfirmCart={showConfirmHandler} />
@@ -96,7 +95,7 @@ const Product = () => {
         />
         <ProductList listProduct={listProduct} onSearchValue={onSearchData} />
       </div>
-    </CartProvider>
+    </Fragment>
   );
 };
 
