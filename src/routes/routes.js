@@ -10,10 +10,11 @@ const RoutesFiles = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/product" element={<Product />} />
       <Route path="/product-detail" element={<ProductForm />} />
-      <Route exact element={<ProtectedRoute />}>
+      {/* <Route exact element={<ProtectedRoute />}>
         <Route path="/product" element={<Product />} />
-      </Route>
+      </Route> */}
     </Routes>
   );
 };
