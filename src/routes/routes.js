@@ -4,17 +4,18 @@ import Home from "../pages/product";
 import ProtectedRoute from "./protectedRoute";
 import Product from "../pages/product";
 import ProductForm from "../componets/products/productForm/productForm";
+import CreditCard from "../componets/creditCard/creditCard";
 
 const RoutesFiles = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/product" element={<Product />} />
-      <Route path="/product-detail" element={<ProductForm />} />
-      {/* <Route exact element={<ProtectedRoute />}>
+      <Route exact element={<ProtectedRoute />}>
         <Route path="/product" element={<Product />} />
-      </Route> */}
+        <Route path="/product-detail" element={<ProductForm />} />
+        <Route path="/credit-card" element={<CreditCard />} />
+      </Route>
     </Routes>
   );
 };
