@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import CartContext from "../../store/cart-context";
+import { Button, Col, Form, Row } from "react-bootstrap";
+import { savePayment } from "../../api/paymentApi";
+import { insertOrder } from "../../api/orderApi";
 import classes from "./creditCard.module.css";
 import Cards from "react-credit-cards-2";
 import "react-credit-cards-2/es/styles-compiled.css";
-import { Col, Form, Row } from "react-bootstrap";
 
-const CreditCard = () => {
+const CreditCard = (props) => {
+  const cartCtx = useContext(CartContext);
+  const { onConfirmPayment } = props;
   const [state, setState] = useState({
     number: "",
     expiry: "",
@@ -23,6 +28,26 @@ const CreditCard = () => {
     setState((prev) => ({ ...prev, focus: evt.target.name }));
   };
 
+  const onSubmitPaymentHandler = async (event) => {
+    event.preventDefault();
+    try {
+      let resultCart = await insertOrder({
+        items: cartCtx.items,
+        totalAmount: cartCtx.totalAmount,
+      });
+      let result = await savePayment({
+        ...state,
+        totalAmount: cartCtx.totalAmount,
+      });
+      if (result && resultCart) {
+        cartCtx.clearCart();
+        onConfirmPayment();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div>
       <div className={classes.Conteiner}>
@@ -37,7 +62,7 @@ const CreditCard = () => {
                 focused={state.focus}
               />
             </div>
-            <form>
+            <form onSubmit={onSubmitPaymentHandler}>
               <Form.Group>
                 <label htmlFor="name">Name</label>
                 <Form.Control
@@ -53,9 +78,8 @@ const CreditCard = () => {
                 <label htmlFor="number">Card Number</label>
                 <Form.Control
                   type="number"
-                  id="cardNumber"
-                  data-testid="cardNumber"
-                  name="cardNumber"
+                  id="number"
+                  name="number"
                   placeholder="Card Number"
                   value={state.number}
                   onChange={handleInputChange}
@@ -68,8 +92,8 @@ const CreditCard = () => {
                     <label htmlFor="Expiration">Expiration</label>
                     <Form.Control
                       type="text"
-                      name="expiration"
-                      id="expiration"
+                      name="expiry"
+                      id="expiry"
                       placeholder="Expiration"
                       value={state.expiry}
                       onChange={handleInputChange}
@@ -92,6 +116,14 @@ const CreditCard = () => {
                   </Form.Group>
                 </Col>
               </Row>
+              <Button
+                className={classes.ButtonSubmit}
+                size="lg"
+                id="submitButton"
+                type="submit"
+              >
+                Payment
+              </Button>
             </form>
           </div>
         </div>

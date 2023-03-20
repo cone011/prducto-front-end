@@ -3,7 +3,6 @@ import classes from "./cartList.module.css";
 import CartItem from "../cartItem/cartItem";
 import CartContext from "../../../store/cart-context";
 import ShowModal from "../../UI/showModal/showModal";
-import { insertOrder } from "../../../api/orderApi";
 
 const CartList = (props) => {
   const { onCloseModal, onConfirmCart } = props;
@@ -21,12 +20,6 @@ const CartList = (props) => {
 
   const onSendCart = async () => {
     try {
-      let result = await insertOrder({
-        items: cartCtx.items,
-        totalAmount: cartCtx.totalAmount,
-      });
-      console.log(result);
-      if (result) cartCtx.clearCart();
       onConfirmCart();
     } catch (err) {
       console.log(err);

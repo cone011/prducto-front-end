@@ -14,8 +14,9 @@ export const todoReducer = (curTodo, action) => {
     case "SET_CONFIRM":
       return {
         ...curTodo,
-        cartIsShow: action.cartIsShow,
-        isLoading: action.isLoading,
+        cartIsShow: false,
+        isLoading: false,
+        isPayment: false,
         message: action.message,
         confirm: true,
         typeModal: "CONFIRM",
@@ -27,11 +28,19 @@ export const todoReducer = (curTodo, action) => {
         productObject: action.productObject,
       };
     }
+    case "SET_PAYMENT":
+      return {
+        ...curTodo,
+        isPayment: true,
+        cartIsShow: false,
+        typeModal: "PAYMENT",
+      };
     case "END":
       return {
         ...curTodo,
         cartIsShow: false,
         isLoading: false,
+        isPayment: false,
         confirm: false,
       };
     default:

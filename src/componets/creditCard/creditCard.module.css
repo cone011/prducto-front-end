@@ -1,5 +1,4 @@
 .Conteiner {
-  margin-top: 10%;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -22,4 +21,10 @@
 
 .CreditCard {
   margin-bottom: 10%;
+}
+
+.ButtonSubmit {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
 }

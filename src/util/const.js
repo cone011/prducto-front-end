@@ -4,6 +4,7 @@ export const defaultTodoReducer = {
   isLoading: false,
   isShow: false,
   isError: false,
+  isPayment: false,
   cartIsShow: false,
   confirm: false,
   typeModal: null,

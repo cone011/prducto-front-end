@@ -2,9 +2,11 @@ import { Fragment } from "react";
 import classes from "./customModal.module.css";
 import ShowModal from "../showModal/showModal";
 import LoadingSpinner from "../loadingSpinner/loadingSpinner";
+import CreditCard from "../../creditCard/creditCard";
 
 const CustomModal = (props) => {
-  const { onCloseModal, message, typeModal, productObject } = props;
+  const { onCloseModal, message, typeModal, productObject, onConfirmPayment } =
+    props;
 
   if (typeModal === "CONFIRM") {
     return (
@@ -66,6 +68,16 @@ const CustomModal = (props) => {
               Close
             </button>
           </div>
+        </ShowModal>
+      </Fragment>
+    );
+  }
+
+  if (typeModal === "PAYMENT") {
+    return (
+      <Fragment>
+        <ShowModal onCloseModal={onCloseModal}>
+          <CreditCard onConfirmPayment={onConfirmPayment} />
         </ShowModal>
       </Fragment>
     );
