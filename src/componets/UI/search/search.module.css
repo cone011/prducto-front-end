@@ -28,3 +28,12 @@
   border: none;
   border-radius: 4px;
 }
+
+@media (max-width: 771px) {
+  .searchForm input {
+    background-color: #212529;
+    border: none;
+    color: white;
+    width: auto;
+  }
+}

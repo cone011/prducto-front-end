@@ -90,3 +90,16 @@
 .ButtonAddCart button:hover {
   background-color: #101030;
 }
+
+@media (max-width: 771px) {
+  .Container {
+    min-height: 120vh;
+    background-color: #fdecc6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+}

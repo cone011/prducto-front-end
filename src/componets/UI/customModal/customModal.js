@@ -59,7 +59,7 @@ const CustomModal = (props) => {
   if (typeModal === "ERROR") {
     return (
       <Fragment>
-        <ShowModal onCloseModal={onCloseModal}>
+        <ShowModal onClose={onCloseModal}>
           <div className={classes.message}>
             <span>{message}</span>
           </div>
@@ -76,7 +76,7 @@ const CustomModal = (props) => {
   if (typeModal === "PAYMENT") {
     return (
       <Fragment>
-        <ShowModal onCloseModal={onCloseModal}>
+        <ShowModal onClose={onCloseModal}>
           <CreditCard onConfirmPayment={onConfirmPayment} />
         </ShowModal>
       </Fragment>

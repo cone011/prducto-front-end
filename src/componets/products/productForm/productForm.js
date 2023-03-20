@@ -1,11 +1,23 @@
-import { useState, useContext, Fragment, useEffect, useCallback } from "react";
+import {
+  useState,
+  useContext,
+  Fragment,
+  useEffect,
+  useCallback,
+  useReducer,
+} from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import CustomModal from "../../UI/customModal/customModal";
+import { todoReducer } from "../../../context/reducer";
+import { defaultTodoReducer } from "../../../util/const";
 import CartContext from "../../../store/cart-context";
 import classes from "./productForm.module.css";
-import { useLocation } from "react-router-dom";
 
 const ProductForm = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [productData, setProductData] = useState({});
+  const [todo, dispatchTodo] = useReducer(todoReducer, defaultTodoReducer);
   const cartCtx = useContext(CartContext);
   const [amount, setAmount] = useState(1);
 
@@ -40,7 +52,15 @@ const ProductForm = () => {
       amount: amount,
       price: productData.price,
     });
-    console.log(cartCtx);
+    dispatchTodo({
+      type: "SET_CONFIRM",
+      message: "The product was add to the cart corretly",
+    });
+  };
+
+  const hideModal = () => {
+    dispatchTodo({ type: "END" });
+    navigate("/product");
   };
 
   return (
@@ -82,6 +102,13 @@ const ProductForm = () => {
           </div>
         </div>
       </div>
+      {todo.confirm && (
+        <CustomModal
+          onCloseModal={hideModal}
+          message={todo.message}
+          typeModal={todo.typeModal}
+        />
+      )}
     </Fragment>
   );
 };
