@@ -1,12 +1,12 @@
 import { Fragment, useCallback, useEffect, useReducer, useState } from "react";
-import { getProductoCategory, getSearchProducto } from "../api/productApi";
-import { getAllCategory } from "../api/categoryApi";
-import { defaultTodoReducer } from "../util/const";
-import { todoReducer } from "../context/reducer";
-import ProductList from "../componets/products/productsList/productsList";
-import CustomModal from "../componets/UI/customModal/customModal";
+import { getProductoCategory, getSearchProducto } from "../../api/productApi";
+import { getAllCategory } from "../../api/categoryApi";
+import { defaultTodoReducer } from "../../util/const";
+import { todoReducer } from "../../context/reducer";
+import ProductList from "../../componets/products/productsList/productsList";
+import CustomModal from "../../componets/UI/customModal/customModal";
 import classes from "./product.module.css";
-import Filter from "../componets/UI/filters/filters";
+import Filter from "../../componets/UI/filters/filters";
 
 const Product = () => {
   const [listProduct, setListProduct] = useState([]);

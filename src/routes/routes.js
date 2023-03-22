@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import Login from "../componets/auth/login/login";
-import Home from "../pages/product";
+import Home from "../pages/Home/home";
 import ProtectedRoute from "./protectedRoute";
-import Product from "../pages/product";
+import Product from "../pages/product/product";
 import ProductForm from "../componets/products/productForm/productForm";
 import CreditCard from "../componets/creditCard/creditCard";
 

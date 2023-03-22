@@ -1,0 +1,49 @@
+.Home {
+  width: 100%;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #3e497a;
+}
+
+.Description {
+  width: 100%;
+  height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #031133;
+  color: white;
+}
+
+.Description h2 {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 75px;
+  color: white;
+  height: 50px;
+}
+
+.Buttons {
+  width: 40%;
+  font-size: 30px;
+  margin-top: 120px;
+}
+
+.Buttons svg {
+  font-size: 60px;
+  margin: 5px;
+  color: white;
+}
+
+@media only screen and (max-width: 600px) {
+  .Description h2 {
+    font-size: 40px;
+  }
+
+  .Buttons {
+    margin-top: 35px;
+    font-size: 20px;
+    width: 80%;
+  }
+}

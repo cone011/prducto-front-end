@@ -35,12 +35,20 @@ export const todoReducer = (curTodo, action) => {
         cartIsShow: false,
         typeModal: "PAYMENT",
       };
+    case "SET_ERROR":
+      return {
+        ...curTodo,
+        error: true,
+        message: action.message,
+        typeModal: action.typeModal,
+      };
     case "END":
       return {
         ...curTodo,
         cartIsShow: false,
         isLoading: false,
         isPayment: false,
+        error: false,
         confirm: false,
       };
     default:

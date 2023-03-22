@@ -1,31 +1,18 @@
 import { useRef, Fragment, useContext, useReducer } from "react";
-import classes from "./login.module.css";
+import { todoReducer } from "../../../context/reducer";
 import { login } from "../../../api/userApi";
-import AuthContext from "../../../store/auth-context";
 import { defaultTodoReducer } from "../../../util/const";
+import { useNavigate } from "react-router-dom";
+import classes from "./login.module.css";
+import AuthContext, { getTokenDuration } from "../../../store/auth-context";
 import CustomModal from "../../UI/customModal/customModal";
-
-const todoReduce = (curTodo, action) => {
-  switch (action.type) {
-    case "SET_ERROR":
-      return {
-        ...curTodo,
-        error: true,
-        message: action.message,
-        typeModal: action.typeModal,
-      };
-    case "END":
-      return { ...curTodo, error: false };
-    default:
-      throw new Error("There is no action to do");
-  }
-};
 
 const Login = () => {
   const authCtx = useContext(AuthContext);
   const userInputRef = useRef();
   const passwordInputRef = useRef();
-  const [todo, dispatchTodo] = useReducer(todoReduce, defaultTodoReducer);
+  const navigate = useNavigate();
+  const [todo, dispatchTodo] = useReducer(todoReducer, defaultTodoReducer);
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -58,6 +45,8 @@ const Login = () => {
       const expiration = new Date();
       expiration.setHours(expiration.getHours() + 1);
       authCtx.login(response.token, expiration);
+      const tokenDuration = getTokenDuration();
+      if (tokenDuration > 0) navigate("/");
     } catch (err) {
       dispatchTodo({
         type: "SET_ERROR",
