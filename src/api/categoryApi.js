@@ -1,7 +1,11 @@
 import { CALL_API } from "../util/const";
+import { getAuthToken } from "../store/auth-context";
 
 export async function getAllCategory() {
-  const result = await fetch(`${CALL_API}/categoria`);
+  const token = getAuthToken();
+  const result = await fetch(`${CALL_API}/categoria`, {
+    headers: { Authorization: "Bearer " + token },
+  });
 
   const data = await result.json();
 

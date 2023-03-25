@@ -18,7 +18,9 @@ const Header = (props) => {
   const showActions = (
     <Fragment>
       <HeaderCartButton onClick={onShowCart} />
-      <button onClick={onLogOut}>Log Out</button>
+      <button onClick={onLogOut} className={classes.btnLogout}>
+        Log Out
+      </button>
     </Fragment>
   );
   return (
