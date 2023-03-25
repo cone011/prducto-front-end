@@ -5,12 +5,14 @@ import ProtectedRoute from "./protectedRoute";
 import Product from "../pages/product/product";
 import ProductForm from "../componets/products/productForm/productForm";
 import CreditCard from "../componets/creditCard/creditCard";
+import SignUp from "../componets/auth/signup/signup";
 
 const RoutesFiles = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<SignUp />} />
       <Route exact element={<ProtectedRoute />}>
         <Route path="/product" element={<Product />} />
         <Route path="/product-detail" element={<ProductForm />} />

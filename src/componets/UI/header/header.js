@@ -1,5 +1,5 @@
 import { Fragment, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import classes from "./header.module.css";
 import AuthContext, { getTokenDuration } from "../../../store/auth-context";
 import HeaderCartButton from "../headerCartButton/headerCartButton";
@@ -15,6 +15,10 @@ const Header = (props) => {
     navigate("/");
   };
 
+  const onSaveHomePage = () => {
+    navigate("/");
+  };
+
   const showActions = (
     <Fragment>
       <HeaderCartButton onClick={onShowCart} />
@@ -23,11 +27,19 @@ const Header = (props) => {
       </button>
     </Fragment>
   );
+
+  const showActionLogOut = (
+    <div className={classes.Links}>
+      <Link to="/signup"> Sign Up </Link>
+    </div>
+  );
+
   return (
     <Fragment>
       <header className={classes.Header}>
-        <h1>Fake Commer</h1>
+        <h1 onClick={onSaveHomePage}>Fake Commer</h1>
         {tokenDuration > 0 && showActions}
+        {tokenDuration <= 0 && showActionLogOut}
       </header>
     </Fragment>
   );
