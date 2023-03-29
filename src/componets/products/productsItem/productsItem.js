@@ -15,10 +15,9 @@ const ProductsItem = (props) => {
   const onSendToProductoDetail = async () => {
     dispatchTodo({ type: "SET_LOADING", message: "FETCHING THE PRODUCT" });
     let result = await getProductoById(id);
-    let imgShow = result.pictures[0];
     dispatchTodo({ type: "END" });
     navigate(`/product-detail`, {
-      state: { productObject: result, imgShow: imgShow },
+      state: { productObject: result, item: result.item },
     });
   };
 

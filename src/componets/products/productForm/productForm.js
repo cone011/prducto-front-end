@@ -24,12 +24,12 @@ const ProductForm = () => {
   const assigmentValue = useCallback(() => {
     const product = {
       ...location.state.productObject,
-      img: location.state.imgShow.url,
     };
     setProductData(product);
   }, [location]);
 
   useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     assigmentValue();
   }, [assigmentValue]);
 
@@ -68,7 +68,7 @@ const ProductForm = () => {
       <div className={classes.Container}>
         <div className={classes.Card}>
           <div className={classes.Image}>
-            <img src={`${productData.img}`} alt={`${productData.id}`} />
+            <img src={`${productData.picture}`} alt={`${productData.id}`} />
           </div>
           <div className="text">
             <h5>{`Codigo: ${productData.id}`}</h5>
