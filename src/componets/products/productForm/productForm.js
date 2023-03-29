@@ -22,10 +22,8 @@ const ProductForm = () => {
   const [amount, setAmount] = useState(1);
 
   const assigmentValue = useCallback(() => {
-    const product = {
-      ...location.state.productObject,
-    };
-    setProductData(product);
+    const { item, picture } = location.state.productObject;
+    setProductData({ ...item, picture });
   }, [location]);
 
   useEffect(() => {
