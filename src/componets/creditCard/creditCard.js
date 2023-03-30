@@ -116,12 +116,7 @@ const CreditCard = (props) => {
                   </Form.Group>
                 </Col>
               </Row>
-              <Button
-                className={classes.ButtonSubmit}
-                size="lg"
-                id="submitButton"
-                type="submit"
-              >
+              <Button className={classes.ButtonSubmit} size="lg" type="submit">
                 Payment
               </Button>
             </form>

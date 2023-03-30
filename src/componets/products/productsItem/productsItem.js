@@ -31,7 +31,12 @@ const ProductsItem = (props) => {
             <Card.Subtitle style={{ paddingBottom: 10 }}>
               <span>$ {price}</span>
             </Card.Subtitle>
-            <Button onClick={onSendToProductoDetail}>View Product</Button>
+            <Button
+              className={classes.btnDetail}
+              onClick={onSendToProductoDetail}
+            >
+              View Product
+            </Button>
           </Card.Body>
         </Card>
       </div>

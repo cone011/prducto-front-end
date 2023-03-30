@@ -24,7 +24,8 @@
 }
 
 .ButtonSubmit {
-  margin-top: 8px;
+  margin-top: 15px;
   display: flex;
   align-items: center;
+  margin-left: 35%;
 }
