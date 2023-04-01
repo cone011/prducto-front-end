@@ -3,11 +3,17 @@
   margin: 10px;
 }
 
+.amount {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
 .btnDetail {
   margin-top: 15px;
   display: flex;
   align-items: center;
-  margin-left: 30%;
+  margin-left: 35%;
 }
 
 @media (max-width: 771px) {

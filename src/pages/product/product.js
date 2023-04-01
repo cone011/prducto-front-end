@@ -17,7 +17,7 @@ const Product = () => {
       dispatchTodo({ type: "SET_LOADING", message: "LOADING" });
       let result = await getProductoCategory("MLA5725");
       let resultCategories = await getAllCategory();
-      let dataObtain = result.results;
+      let dataObtain = result.items;
       setListProduct(dataObtain);
       setCategories(resultCategories);
       dispatchTodo({ type: "END" });
@@ -30,7 +30,7 @@ const Product = () => {
     try {
       dispatchTodo({ type: "SET_LOADING", message: "LOADING" });
       let result = await getProductoCategory(valueReturn);
-      let dataObtain = result.results;
+      let dataObtain = result.items;
       setListProduct(dataObtain);
       dispatchTodo({ type: "END" });
     } catch (err) {
@@ -42,7 +42,7 @@ const Product = () => {
     try {
       dispatchTodo({ type: "SET_LOADING", message: "LOADING" });
       let result = await getSearchProducto(dataValue);
-      let dataObtain = result.result.results;
+      let dataObtain = result.items;
       setListProduct(dataObtain);
       dispatchTodo({ type: "END" });
     } catch (err) {

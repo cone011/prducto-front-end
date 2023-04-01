@@ -14,7 +14,7 @@ const ProductList = (props) => {
             key={item.id}
             id={item.id}
             name={item.title}
-            imgUrl={item.thumbnail}
+            imgUrl={item.picture}
             price={item.price}
           />
         ))}

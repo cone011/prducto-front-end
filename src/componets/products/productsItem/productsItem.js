@@ -9,6 +9,7 @@ import classes from "./productsItem.module.css";
 
 const ProductsItem = (props) => {
   const { name, imgUrl, price, id } = props;
+  const { amount } = price;
   const [todo, dispatchTodo] = useReducer(todoReducer, defaultTodoReducer);
   const navigate = useNavigate();
 
@@ -29,7 +30,7 @@ const ProductsItem = (props) => {
           <Card.Body>
             <Card.Title>{name}</Card.Title>
             <Card.Subtitle style={{ paddingBottom: 10 }}>
-              <span>$ {price}</span>
+              <span className={classes.amount}>$ {amount}</span>
             </Card.Subtitle>
             <Button
               className={classes.btnDetail}
